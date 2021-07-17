@@ -1,6 +1,5 @@
 {
   "name": "rickandmorty",
-  "homepage": "https://trendyol-front-end-bootcamp.github.io/week-3-react-canberk-onem/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
