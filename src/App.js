@@ -3,8 +3,13 @@ import Filter from './components/Filter/Filter';
 import  {useState, useEffect}  from "react"
 import Header from './components/Header/Header'
 import axios from "axios"
-import CharacterCard from './components/CharacterCard/CharacterCard';
-
+import CharacterList from './components/CharacterList/CharacterList';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import CharacterDetails from './components/CharacterDetails/CharacterDetails';
 
 function App() {
   const [characterData, setCharacterData] = useState([])
@@ -20,20 +25,20 @@ useEffect(() => {
 }, [])
 
   return (
-
+    <Router>
       <div className="background" >
       <Header/>
-      <Filter filter={setCharacterData}/>
-      <div className="cardContainer">
-          {
-            
-            characterData.map((data) => {
-              return (
-                <CharacterCard key={data.id} data={data}/>)
-            })
-          }
-        </div>
+      <Switch>
+        <Route exact path="/">
+          <Filter filter={setCharacterData}/>
+          <CharacterList characterData={characterData}/>
+        </Route>
+
+          <Route path="/character/:id" children={<CharacterDetails />} />
+      </Switch>
+
       </div>
+    </Router>
   );
 }
 

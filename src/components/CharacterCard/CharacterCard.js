@@ -1,5 +1,9 @@
 import React from 'react'
 import styles from "./charactercard.module.css";
+import {
+    BrowserRouter as Router,
+    Link,
+  } from "react-router-dom";
 
 
 
@@ -8,7 +12,7 @@ function CharacterCard({data}) {
     return (
         <div className={styles.card}>
             <div>
-                <img src={data.image} alt={data.name}/>
+            <Link to={`character/${data.id}`}><img src={data.image} alt={data.name}/></Link>
                 <h2>{data.name}</h2>
             </div>
             <div className={styles.cardInfo}>
