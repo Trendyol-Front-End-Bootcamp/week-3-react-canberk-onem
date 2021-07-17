@@ -1,24 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import Filter from './components/Filter/Filter';
+import  {useState, useEffect}  from "react"
+import Header from './components/Header/Header'
+import axios from "axios"
+import CharacterCard from './components/CharacterCard/CharacterCard';
+
 
 function App() {
+  const [characterData, setCharacterData] = useState([])
+
+useEffect(() => {
+  const axiosData = async () => {
+    const res = await axios("https://rickandmortyapi.com/api/character")
+    setCharacterData(res.data.results)
+ }
+ axiosData();
+
+ 
+}, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <div className="background" >
+      <Header/>
+      <Filter filter={setCharacterData}/>
+      <div className="cardContainer">
+          {
+            
+            characterData.map((data) => {
+              return (
+                <CharacterCard key={data.id} data={data}/>)
+            })
+          }
+        </div>
+      </div>
   );
 }
 
