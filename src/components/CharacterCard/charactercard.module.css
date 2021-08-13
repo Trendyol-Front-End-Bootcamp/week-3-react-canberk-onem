@@ -20,6 +20,9 @@
 
 .card img{
     width: 150px;
+    border-radius: 10px;
+    border: 2px solid greenyellow;
+    cursor: pointer;
 }
 
 .cardInfo{

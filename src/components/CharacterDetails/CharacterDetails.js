@@ -21,11 +21,11 @@ function CharacterDetails() {
               setEpisodes(result.episode)
             },  
           )
+          
       }, [])
-
-
-
-
+      
+      const lastFiveEpisodesLinks = episodes.slice(Math.max(episodes.length - 5, 0))
+      const lastFiveEpisodes = lastFiveEpisodesLinks.map(episode => episode.replace(/(https:\/\/rickandmortyapi.com\/api\/episode\/)/g, ""))
 
     return (
         <div className={styles.detailContainer}>
@@ -38,17 +38,19 @@ function CharacterDetails() {
 
             
             <ul>
-                <li>Status: {characterData.status}</li>
-                <li>Species: {characterData.species}</li>
-                <li>Gender: {characterData.gender}</li>
-                <li>Origin: {{...characterData.origin}.name}</li>
-                <li>Location: {{...characterData.location}.name}</li>
+                <li><strong>Status:</strong> {characterData.status}</li>
+                <li><strong>Species:</strong> {characterData.species}</li>
+                <li><strong>Gender:</strong> {characterData.gender}</li>
+                <li><strong>Origin:</strong> {{...characterData.origin}.name}</li>
+                <li><strong>Location:</strong> {{...characterData.location}.name}</li>
            
             </ul>
-            <p>Last episodes:</p>
-            {/* <ul>
-            <li>{episodes}</li>
-            </ul> */}
+            <p><strong>Last episodes:</strong>
+              <ul className={styles.episodesList}>
+                {lastFiveEpisodes.map(episode => <li>{episode}</li>)}
+              </ul>
+            </p>
+            
         </div>
     )
 }

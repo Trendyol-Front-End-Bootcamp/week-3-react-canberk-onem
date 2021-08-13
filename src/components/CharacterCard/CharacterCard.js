@@ -8,7 +8,6 @@ import {
 
 
 function CharacterCard({data}) {
-    console.log(data)
     return (
         <div className={styles.card}>
             <div>
@@ -16,10 +15,10 @@ function CharacterCard({data}) {
                 <h2>{data.name}</h2>
             </div>
             <div className={styles.cardInfo}>
-                <p>Status: {data.status}</p>
-                <p>Species: {data.species}</p>
-                <p>Location: {data.location.name}</p>
-                <p>Origin: {data.origin.name}</p>
+                <p><strong>Status:</strong> {data.status}</p>
+                <p><strong>Species:</strong> {data.species}</p>
+                <p><strong>Location:</strong> {data.location.name}</p>
+                <p><strong>Origin:</strong> {data.origin.name}</p>
             </div>
             
             
